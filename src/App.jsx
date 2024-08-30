@@ -1,13 +1,19 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./constants/query.js";
 
-const queryClient = new QueryClient();
+import { RouterProvider } from "react-router-dom";
+import { router } from "./constants/router.js";
+
+import FavoritesContextProvider from './store/favorites-context.jsx'
 
 
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      New App
+      <FavoritesContextProvider>
+        <RouterProvider router={router} />
+      </FavoritesContextProvider>
     </QueryClientProvider>
   );
 }
